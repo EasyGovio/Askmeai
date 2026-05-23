@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AskMeAI — Yakında / Coming Soon</title>
+  <title>AskMeAI — Demnächst / Coming Soon / Yakında</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
     }
     body::before {
@@ -32,9 +32,34 @@
       pointer-events: none;
     }
 
+    /* LANG SWITCHER */
+    .lang-switcher {
+      position: fixed;
+      top: 20px; right: 24px;
+      display: flex; gap: 6px;
+      z-index: 999;
+    }
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      padding: 5px 10px;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 4px;
+      color: rgba(212,175,55,0.5);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      color: #d4af37;
+      border-color: #d4af37;
+      background: rgba(212,175,55,0.08);
+    }
+
     .container {
       text-align: center;
-      padding: 40px 24px;
+      padding: 60px 24px 40px;
       max-width: 680px;
       width: 100%;
       position: relative;
@@ -75,8 +100,7 @@
     }
 
     .divider {
-      width: 60px;
-      height: 1px;
+      width: 60px; height: 1px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
       margin: 0 auto 48px;
       opacity: 0;
@@ -176,28 +200,70 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+
     @media (max-width: 480px) {
-      .container { padding: 40px 20px; }
+      .container { padding: 70px 20px 40px; }
+      .lang-switcher { top: 16px; right: 16px; }
     }
   </style>
 </head>
 <body>
+
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+
   <div class="container">
 
-    <div class="eyebrow">PACDI Global Ekosistemi</div>
-
+    <div class="eyebrow">PACDI Global Ecosystem</div>
     <h1 class="logo">Ask<span>Me</span>AI</h1>
-    <div class="tagline">AI · Navigasyon · Dinleyici</div>
-
+    <div class="tagline">KI · Navigation · Zuhören · Dinleyici · Listener</div>
     <div class="divider"></div>
 
-    <p class="coming-soon">Yakında buradayız.</p>
+    <!-- DEUTSCH -->
+    <div class="lang-content active" id="lang-de">
+      <p class="coming-soon">Demnächst sind wir da.</p>
+      <p class="description">
+        AskMeAI ist der KI-gestützte Navigationsassistent für alle, die sich im <strong>deutschen Behördendschungel</strong> zurechtfinden möchten. Egal mit welcher Frage du kommst — wir führen dich ans Ziel.<br><br>
+        Gleichzeitig ist AskMeAI das Zuhause von <strong>Sabır Taşı, Dert Babası und Arınma Odası</strong> — drei digitale Erfahrungsräume zum Loslassen, Leichtwerden und Verstehen.
+      </p>
+      <div class="quote">
+        <p>„Technologie soll dem Menschen nicht seine Hilflosigkeit vor Augen führen — sie soll ihm den Weg weisen."</p>
+        <cite>— PACDI Philosophie · Technologie im Dienste der Menschlichkeit</cite>
+      </div>
+    </div>
 
-    <p class="description">
-      AskMeAI, <strong>Almanya'nın karmaşık sistemlerinde yön bulmak</strong> için tasarlanmış yapay zeka destekli navigasyon asistanı. Hangi soruyla gelirsen gel — seni doğru yere götürür.<br><br>
-      Aynı zamanda <strong>Sabır Taşı, Dert Babası ve Arınma Odası</strong> — dinlemek, hafifletmek ve anlamak için üç ayrı deneyim — bu çatı altında toplanıyor.
-    </p>
+    <!-- TÜRKÇE -->
+    <div class="lang-content" id="lang-tr">
+      <p class="coming-soon">Yakında buradayız.</p>
+      <p class="description">
+        AskMeAI, <strong>Almanya'nın karmaşık sistemlerinde yön bulmak</strong> için tasarlanmış yapay zeka destekli navigasyon asistanı. Hangi soruyla gelirsen gel — seni doğru yere götürür.<br><br>
+        Aynı zamanda <strong>Sabır Taşı, Dert Babası ve Arınma Odası</strong> — dinlemek, hafifletmek ve anlamak için üç ayrı deneyim — bu çatı altında toplanıyor.
+      </p>
+      <div class="quote">
+        <p>"Teknoloji, insanın acziyetini yüzüne vurmak için değil — ona rehberlik etmek için vardır."</p>
+        <cite>— PACDI Felsefesi · Technologie im Dienste der Menschlichkeit</cite>
+      </div>
+    </div>
 
+    <!-- ENGLISH -->
+    <div class="lang-content" id="lang-en">
+      <p class="coming-soon">We're coming soon.</p>
+      <p class="description">
+        AskMeAI is the AI-powered navigation assistant for anyone trying to make sense of <strong>Germany's complex bureaucratic system</strong>. Whatever your question — we'll guide you to the right place.<br><br>
+        AskMeAI is also home to <strong>Sabır Taşı, Dert Babası and Arınma Odası</strong> — three digital experiences designed to help you unburden, breathe, and understand.
+      </p>
+      <div class="quote">
+        <p>"Technology should not confront people with their helplessness — it should show them the way."</p>
+        <cite>— PACDI Philosophy · Technologie im Dienste der Menschlichkeit</cite>
+      </div>
+    </div>
+
+    <!-- ORTAK: LINKLER + FOOTER -->
     <div class="apps-row">
       <a href="https://easygov.io" class="app-pill" target="_blank">easygov.io</a>
       <a href="https://gluconavigator.io" class="app-pill" target="_blank">gluconavigator.io</a>
@@ -207,15 +273,25 @@
       <a href="https://pacdi.games" class="app-pill" target="_blank">pacdi.games</a>
     </div>
 
-    <div class="quote">
-      <p>"Teknoloji, insanın acziyetini yüzüne vurmak için değil — ona rehberlik etmek için vardır."</p>
-      <cite>— PACDI Felsefesi · Technologie im Dienste der Menschlichkeit</cite>
-    </div>
-
     <div class="pacdi-link">
       <a href="https://pacdi.io" target="_blank">pacdi.io →</a>
     </div>
 
   </div>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang-content').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      document.getElementById('lang-' + lang).classList.add('active');
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      document.documentElement.lang = lang;
+    }
+  </script>
+
 </body>
 </html>
